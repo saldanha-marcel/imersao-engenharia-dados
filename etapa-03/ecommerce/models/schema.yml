@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: silver_vendas
+    columns:
+      - name: id_venda
+        tests:
+          - unique    # Garante que não há vendas duplicadas
+          - not_null  # Garante que toda venda tem um ID
+
+  - name: silver_produtos
+    columns:
+      - name: id_produto
+        tests:
+          - unique
+          - not_null
+      - name: faixa_preco
+        tests:
+          - accepted_values:
+              values: ['PREMIUM', 'MEDIO', 'BASICO'] # Garante que não existam outros tipos

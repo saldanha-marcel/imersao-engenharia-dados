@@ -1,0 +1,65 @@
+name: 'ecommerce'
+version: '1.0.0'
+
+profile: 'ecommerce'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  ecommerce:
+    bronze:
+      +materialized: view
+      +schema: bronze
+      +tags: ['bronze', 'raw']
+      +meta:
+        owner: "Equipe de Engenharia de Dados"
+        description: "Modelos da camada Bronze - dados brutos"
+        modeling_layer: "bronze"
+
+    silver:
+      +materialized: table
+      +schema: silver
+      +tags: ['silver', 'clean']
+      +meta:
+        owner: "Equipe de Engenharia de Dados"
+        description: "Modelos da camada Silver - dados limpos"
+        modeling_layer: "silver"
+    
+    gold:
+      customer_success:
+         +materialized: table
+         +schema: gold
+         +tags: ['gold', 'customer_success']
+         +meta:
+           owner: "Equipe de Customer Success"
+           description: "Modelos para análise de sucesso do cliente"
+           modeling_layer: "gold"
+      pricing:
+         +materialized: table
+         +schema: gold
+         +tags: ['gold', 'pricing']
+         +meta:
+           owner: "Equipe de Pricing"
+           description: "Modelos para análise de preços e concorrência"
+           modeling_layer: "gold"
+      sales:
+         +materialized: table
+         +schema: gold
+         +tags: ['gold', 'sales']
+         +meta:
+           owner: "Equipe de Vendas"
+           description: "Modelos para análise de vendas e performance"
+           modeling_layer: "gold"
+vars:
+  # Variáveis globais para o projeto
+  segmentacao_vip_threshold: 1000  # Valor mínimo de receita para segmentação VIP
+  segmentacao_top_tier_threshold: 5000  # Valor mínimo de receita para segmentação Top Tier

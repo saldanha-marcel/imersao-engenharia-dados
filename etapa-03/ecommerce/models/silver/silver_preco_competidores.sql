@@ -1,0 +1,15 @@
+-- =============================================
+-- Model: silver_preco_competidores
+-- Description: cleansing
+-- Author: Marcelo Saldanha
+-- Created: 2026-03-14
+-- =============================================
+
+SELECT
+    id_produto,
+    nome_concorrente,
+    preco_concorrente,
+    data_coleta,
+    -- Transformação para formato de data
+    DATE(data_coleta::timestamp) AS data_coleta_date
+FROM {{ ref('bronze_preco_competidores') }}
