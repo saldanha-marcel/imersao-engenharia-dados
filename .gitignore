@@ -48,6 +48,21 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+
+# Environment variables
+.env
+
+# DBT
+target/
+dbt_packages/
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
 .hypothesis/
 .pytest_cache/
 

@@ -17,4 +17,5 @@ models:
       - name: faixa_preco
         tests:
           - accepted_values:
-              values: ['PREMIUM', 'MEDIO', 'BASICO'] # Garante que não existam outros tipos
+              arguments:
+                values: ['PREMIUM', 'MEDIO', 'BASICO'] # Garante que não existam outros tipos
